@@ -1,7 +1,4 @@
 package com.learning.demo.Java.Threading.Questions;
-
-import java.util.concurrent.ExecutionException;
-
 class Printing extends Thread{
 
     @Override
