@@ -5,10 +5,11 @@ import java.util.List;
 
 public class SetMatrixZero {
     public static void main(String[] args) {
-        int a [][] = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+        int a [][] = {{0,1,2,0},{3,0,5,2},{1,3,1,5}};
+        //worst solution
         //worstSolutionComplexityWise(a);
         //betterThan worst solution
-        betterThanWorstSolution(a);
+       // betterThanWorstSolution(a);
         //optimal solution
         optimal(a);
 
@@ -18,6 +19,8 @@ public class SetMatrixZero {
 
     }
 
+    //Time: o(m*n)
+    //Space: o(m+n)
     private static void betterThanWorstSolution(int[][] a) {
         int[] rowArray = new int[a.length];
         int[] colArray = new int[a[0].length];
@@ -54,30 +57,44 @@ public class SetMatrixZero {
     //Space: o(1)
     private static void optimal(int[][] a) {
         //traverse
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a[i].length; j++) {
-                if(a[i][j] == 0) {
-
-                }
+        for (int i = 1; i < a.length; i++) {
+            for (int j = 1; j < a[i].length; j++) {
+               if(a[i][j] == 0) {
+                   a[i][0] = 0;
+                   a[0][j] = 0;
+               }
             }
+            System.out.println();
         }
 
         //now transform the array
-        for ( int i  = 0 ; i < rowArray.length ; i++) {
-            if(rowArray[i] == 1) {
+        for ( int i  = 0 ; i < a.length ; i++) {
+            if(a[i][0] == 0) {
                 for (int y = 0; y  < a[0].length ; y++ ){
-                    a[i][y] = 0;
+                    if(a[i][y] != 0) {
+                        a[i][y] = Integer.MAX_VALUE;
+                    }
+                }
+            }
+        }
+//
+        for ( int i  = 0 ; i < a[0].length ; i++) {
+            if(a[0][i] == 0) {
+                for (int y = 0; y  < a.length ; y++ ){
+                    if(a[y][i] != 0) {
+                        a[y][i] = Integer.MAX_VALUE;
+                    }
                 }
             }
         }
 
-        for ( int i  = 0 ; i < colArray.length ; i++) {
-            if(colArray[i] == 1) {
-                for (int y = 0; y  < a.length ; y++ ){
-                    a[y][i] = 0;
-                }
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+            if(a[i][j] == Integer.MAX_VALUE){
+                a[i][j] = 0;
             }
-        }
+            }
+            }
     }
 
     private static void printMatrix(int[][] a) {
