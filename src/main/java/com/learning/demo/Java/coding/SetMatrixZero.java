@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SetMatrixZero {
     public static void main(String[] args) {
-        int a [][] = {{0,1,2,0},{3,0,5,2},{1,3,1,5}};
+        int a [][] = {{0,1,2,0},{3,1,5,2},{1,3,1,5}};
         //worst solution
         //worstSolutionComplexityWise(a);
         //betterThan worst solution
